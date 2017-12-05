@@ -129,4 +129,6 @@ Can include blends (ex: Bordeaux blend).
 
 #### associations
 * has many regions
+* has many countries (through regions)
+* has many continents (through countries???)
 * has many wines
