@@ -11,24 +11,8 @@
 | session_token      | string        | not null, index, unique|
 
 #### associations
-* has many wines
-
-## lots
-
-|    Column         |   Data Type   |    Details               |
-| -------------     | ------------- | -------------            |
-| id                | integer       | not null, primary key    |
-| wine_id           | integer        | not null, index           |
-| house_id          | integer        | not null, index         |
-| continent_id      | integer        | not null, index           |
-| date              | string?        | not null                 |
-| quantity          | integer        | not null                 |
-| hammer/realized?  | integer        | not null               |
-
-#### associations
-* belongs to house
-* belongs to wine?
-* belongs to continent?
+* has many portfolio items
+* has many wines (through portfolio items)
 
 ## wines
 
@@ -45,12 +29,25 @@
 | hammer/realized?  | integer        | not null               |
 
 #### associations
-* belongs to user
 * belongs to winery
 * belongs to region
 * belongs to country (through region)
 * belongs to grape
-* has many lots?
+* has many lots
+* has many users (through portfolio items)
+
+## portfolio items
+Join table for users who own wines.
+
+|    Column         |   Data Type   |    Details               |
+| -------------     | ------------- | -------------            |
+| id                | integer       | not null, primary key    |
+| user_id           | integer        | not null, index            |
+| wine_id           | integer        | not null, index       |
+
+#### associations
+* belongs to user
+* belongs to wine
 
 ## wineries
 
@@ -65,6 +62,24 @@
 * has many wines
 * belongs to country
 * belongs to region
+
+
+## lots
+
+|    Column         |   Data Type   |    Details               |
+| -------------     | ------------- | -------------            |
+| id                | integer       | not null, primary key    |
+| wine_id           | integer        | not null, index           |
+| house_id          | integer        | not null, index         |
+| continent_id      | integer        | not null, index           |
+| date              | string?        | not null                 |
+| quantity          | integer        | not null                 |
+| hammer/realized?  | integer        | not null               |
+
+#### associations
+* belongs to house
+* belongs to wine?
+* belongs to continent
 
 ## (auction) houses
 
